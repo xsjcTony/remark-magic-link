@@ -8,8 +8,8 @@ const TEST_TITLE = {
   NORMAL: 'normal',
   NO_CONFIG: 'no-config',
   NO_MATCH: 'no-match',
-  CUSTOM_IMAGE: 'custom-image',
-  NO_IMAGE: 'no-image',
+  CUSTOM_ICON: 'custom-icon',
+  NO_ICON: 'no-icon',
   NO_NEW_TAB: 'no-new-tab',
 }
 const OUTPUT_PATH = './output/main/'
@@ -49,28 +49,28 @@ describe('[main]', () => {
   })
 
 
-  it(`[${TEST_TITLE.CUSTOM_IMAGE}}]: use custom image if "imageUrl" is specified`, async () => {
+  it(`[${TEST_TITLE.CUSTOM_ICON}}]: use custom icon if "iconUrl" is specified`, async () => {
     const result = await processInput(INPUT, {
       linksMap: {
-        Vitest: { link: 'https://github.com/vitest-dev/vitest', imageUrl: 'foo' },
+        Vitest: { link: 'https://github.com/vitest-dev/vitest', iconUrl: 'foo' },
         VueUse: 'https://github.com/vueuse/vueuse',
-        Vue: { link: 'https://github.com/vuejs/core', imageUrl: 'https://vuejs.org/logo.svg' },
+        Vue: { link: 'https://github.com/vuejs/core', iconUrl: 'https://vuejs.org/logo.svg' },
       },
     })
 
-    await expect(result).toMatchFileSnapshot(`${OUTPUT_PATH}${TEST_TITLE.CUSTOM_IMAGE}.md`)
+    await expect(result).toMatchFileSnapshot(`${OUTPUT_PATH}${TEST_TITLE.CUSTOM_ICON}.md`)
   })
 
 
-  it(`[${TEST_TITLE.NO_IMAGE}]: do not render image if "imageUrl" is "false"`, async () => {
+  it(`[${TEST_TITLE.NO_ICON}]: do not render icon if "iconUrl" is "false"`, async () => {
     const result = await processInput(INPUT, {
       linksMap: {
         Vitest: 'https://github.com/vitest-dev/vitest',
-        Vue: { link: 'https://github.com/vuejs/core', imageUrl: false },
+        Vue: { link: 'https://github.com/vuejs/core', iconUrl: false },
       },
     })
 
-    await expect(result).toMatchFileSnapshot(`${OUTPUT_PATH}${TEST_TITLE.NO_IMAGE}.md`)
+    await expect(result).toMatchFileSnapshot(`${OUTPUT_PATH}${TEST_TITLE.NO_ICON}.md`)
   })
 
 

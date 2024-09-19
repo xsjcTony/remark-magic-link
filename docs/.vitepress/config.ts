@@ -16,8 +16,8 @@ export default defineConfig({
   lastUpdated: true,
   lang: 'en-US',
   appearance: 'dark',
-  title: 'unocss-preset-animations',
-  titleTemplate: ':title | unocss-preset-animations',
+  title: 'remark-magic-link',
+  titleTemplate: ':title | remark-magic-link',
   head: [
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' }],
   ],

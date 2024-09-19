@@ -1,7 +1,7 @@
 {
   "name": "remark-magic-link",
   "version": "0.1.0",
-  "description": "🔌 A remark plugin to turn `{xxx}` syntax into links, optionally with an image",
+  "description": "🔌 A remark plugin to turn `{xxx}` syntax into links, optionally with an icon",
   "packageManager": "pnpm@9.10.0",
   "type": "module",
   "author": "Aelita <https://github.com/xsjcTony>",
@@ -18,12 +18,12 @@
     "remark",
     "remark-plugin",
     "remark-magic-link",
-    "remark-image-link",
     "remark-icon-link",
+    "remark-image-link",
     "remark-link",
     "magic-link",
-    "image-link",
-    "icon-link"
+    "icon-link",
+    "image-link"
   ],
   "sideEffects": false,
   "exports": {

@@ -2,7 +2,7 @@ export interface ParsedMagicLink {
   text: string
   link: string
   type: string
-  imageUrl: string | false
+  iconUrl: string | false
 }
 
 
@@ -18,7 +18,7 @@ export interface MagicLinkPostprocessor {
 
 
 export interface RemarkMagicLinkOptions {
-  linksMap: Record<string, string | { link: string; imageUrl?: string | false }>
+  linksMap: Record<string, string | { link: string; iconUrl?: string | false }>
   handlers?: MagicLinkHandler[]
   postprocessors?: MagicLinkPostprocessor[]
   openInNewTab?: boolean

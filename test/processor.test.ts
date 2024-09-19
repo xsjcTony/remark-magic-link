@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises'
 import { describe, expect, it, vi } from 'vitest'
 import { GET_FAVICON_URL_BASE } from '@/constants'
-import { gitHubOrgImagePostprocessor } from '@/postprocessors'
+import { gitHubOrgIconPostprocessor } from '@/postprocessors'
 import { processInput } from '~/utils'
 import type { MagicLinkPostprocessor } from '@/types'
 
@@ -18,18 +18,18 @@ const INPUT = await readFile(new URL('fixtures/input-postprocessor.md', import.m
 
 describe('[processor]', () => {
   describe('[default]', () => {
-    describe('[github-org-image]', () => {
-      it('should return "imageUrl: false" if "imageUrl" is false', () => {
+    describe('[github-org-icon]', () => {
+      it('should return "iconUrl: false" if "iconUrl" is false', () => {
         const parsed = {
           text: 'foo',
           link: 'https://test.com',
           type: 'link',
-          imageUrl: false,
+          iconUrl: false,
         } as const
 
-        gitHubOrgImagePostprocessor.postprocess(parsed)
+        gitHubOrgIconPostprocessor.postprocess(parsed)
 
-        expect(parsed).toStrictEqual(expect.objectContaining({ imageUrl: false }))
+        expect(parsed).toStrictEqual(expect.objectContaining({ iconUrl: false }))
       })
 
 
@@ -38,16 +38,16 @@ describe('[processor]', () => {
           text: 'foo',
           link: 'https://test.com',
           type: 'link',
-          imageUrl: `${GET_FAVICON_URL_BASE}github.com`,
+          iconUrl: `${GET_FAVICON_URL_BASE}github.com`,
         } as const
 
-        gitHubOrgImagePostprocessor.postprocess(parsed)
+        gitHubOrgIconPostprocessor.postprocess(parsed)
 
         expect(parsed).toStrictEqual({
           text: 'foo',
           link: 'https://test.com',
           type: 'link',
-          imageUrl: `${GET_FAVICON_URL_BASE}github.com`,
+          iconUrl: `${GET_FAVICON_URL_BASE}github.com`,
         })
       })
 
@@ -57,54 +57,54 @@ describe('[processor]', () => {
           text: 'foo',
           link: 'https://github.com/sponsors',
           type: 'link',
-          imageUrl: `${GET_FAVICON_URL_BASE}github.com`,
+          iconUrl: `${GET_FAVICON_URL_BASE}github.com`,
         } as const
 
-        gitHubOrgImagePostprocessor.postprocess(parsed)
+        gitHubOrgIconPostprocessor.postprocess(parsed)
 
         expect(parsed).toStrictEqual({
           text: 'foo',
           link: 'https://github.com/sponsors',
           type: 'link',
-          imageUrl: `${GET_FAVICON_URL_BASE}github.com`,
+          iconUrl: `${GET_FAVICON_URL_BASE}github.com`,
         })
       })
 
 
-      it('should return as is if "imageUrl" is not a favicon', () => {
+      it('should return as is if "iconUrl" is not a favicon', () => {
         const parsed = {
           text: 'foo',
           link: 'https://github.com/vitest-dev/vitest',
           type: 'link',
-          imageUrl: 'https://example.com/foo.png',
+          iconUrl: 'https://example.com/foo.png',
         } as const
 
-        gitHubOrgImagePostprocessor.postprocess(parsed)
+        gitHubOrgIconPostprocessor.postprocess(parsed)
 
         expect(parsed).toStrictEqual({
           text: 'foo',
           link: 'https://github.com/vitest-dev/vitest',
           type: 'link',
-          imageUrl: 'https://example.com/foo.png',
+          iconUrl: 'https://example.com/foo.png',
         })
       })
 
 
-      it(`should return the GitHub org image URL if it's a repo`, () => {
+      it(`should return the GitHub org icon URL if it's a repo`, () => {
         const parsed = {
           text: 'foo',
           link: 'https://github.com/vitest-dev/vitest',
           type: 'link',
-          imageUrl: `${GET_FAVICON_URL_BASE}github.com/vitest-dev/vitest`,
+          iconUrl: `${GET_FAVICON_URL_BASE}github.com/vitest-dev/vitest`,
         } as const
 
-        gitHubOrgImagePostprocessor.postprocess(parsed)
+        gitHubOrgIconPostprocessor.postprocess(parsed)
 
         expect(parsed).toStrictEqual({
           text: 'foo',
           link: 'https://github.com/vitest-dev/vitest',
           type: 'link',
-          imageUrl: 'https://github.com/vitest-dev.png',
+          iconUrl: 'https://github.com/vitest-dev.png',
         })
       })
     })
@@ -123,7 +123,7 @@ describe('[processor]', () => {
           parsed.text = 'foo'
           parsed.link = 'https://test.com'
           parsed.type = 'custom'
-          parsed.imageUrl = 'foo'
+          parsed.iconUrl = 'foo'
         },
       }
 

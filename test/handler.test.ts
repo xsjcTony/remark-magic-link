@@ -37,23 +37,23 @@ describe('[handler]', () => {
     })
 
 
-    it('should use the string as "link" and fetch the favicon for "imageUrl"', () => {
+    it('should use the string as "link" and fetch the favicon for "iconUrl"', () => {
       const options: RemarkMagicLinkOptions = { linksMap: { foo: 'https://test.com' } }
 
       expect(makeLinkHandler(options).handler('foo')).toStrictEqual({
         text: 'foo',
         link: 'https://test.com',
         type: 'link',
-        imageUrl: `${GET_FAVICON_URL_BASE}test.com`,
+        iconUrl: `${GET_FAVICON_URL_BASE}test.com`,
       })
     })
 
 
-    describe('[object -> imageUrl]', () => {
-      it('should respect the passed in "imageUrl"', () => {
+    describe('[object -> iconUrl]', () => {
+      it('should respect the passed in "iconUrl"', () => {
         const options: RemarkMagicLinkOptions = {
           linksMap: {
-            foo: { link: 'https://test.com', imageUrl: 'https://test.com/image.png' },
+            foo: { link: 'https://test.com', iconUrl: 'https://test.com/icon.png' },
           },
         }
 
@@ -61,15 +61,15 @@ describe('[handler]', () => {
           text: 'foo',
           link: 'https://test.com',
           type: 'link',
-          imageUrl: 'https://test.com/image.png',
+          iconUrl: 'https://test.com/icon.png',
         })
       })
 
 
-      it('should respect the passed in "imageUrl" even if it is "false"', () => {
+      it('should respect the passed in "iconUrl" even if it is "false"', () => {
         const options: RemarkMagicLinkOptions = {
           linksMap: {
-            foo: { link: 'https://test.com', imageUrl: false },
+            foo: { link: 'https://test.com', iconUrl: false },
           },
         }
 
@@ -77,7 +77,7 @@ describe('[handler]', () => {
           text: 'foo',
           link: 'https://test.com',
           type: 'link',
-          imageUrl: false,
+          iconUrl: false,
         })
       })
     })
@@ -97,7 +97,7 @@ describe('[handler]', () => {
             text: content,
             link: 'https://test.com',
             type: 'custom',
-            imageUrl: 'foo',
+            iconUrl: 'foo',
           }
         },
       }
@@ -133,7 +133,7 @@ describe('[handler]', () => {
             text: content,
             link: 'https://test.com',
             type: 'custom',
-            imageUrl: 'foo',
+            iconUrl: 'foo',
           }
         },
       }
@@ -144,7 +144,7 @@ describe('[handler]', () => {
           text: content,
           link: 'https://useless.com',
           type: 'useless',
-          imageUrl: 'bar',
+          iconUrl: 'bar',
         }),
       }
 

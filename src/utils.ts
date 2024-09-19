@@ -26,21 +26,21 @@ export function generateHtml(
     text,
     link,
     type,
-    imageUrl,
+    iconUrl,
   } = postprocessed
 
   const hast = h(
     `a.remark-magic-link.remark-magic-link-${type}`,
     {
       href: link,
-      ...imageUrl && { 'class': 'remark-magic-link-with-image' },
+      ...iconUrl && { 'class': 'remark-magic-link-with-icon' },
       ...openInNewTab && { target: '_blank' },
     },
     [
-      ...imageUrl
-        ? [h('span.remark-magic-link-image', {
+      ...iconUrl
+        ? [h('span.remark-magic-link-icon', {
           role: 'img',
-          style: `background-image: url('${imageUrl}')`,
+          style: `background-image: url('${iconUrl}')`,
         })]
         : [],
       h('span.remark-magic-link-text', text),

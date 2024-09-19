@@ -12,7 +12,7 @@ export function makeLinkHandler(options: RemarkMagicLinkOptions | undefined): Ma
       const text = content.trim()
 
       let url: string | undefined
-      let imageUrl: string | false | undefined
+      let iconUrl: string | false | undefined
 
       const link = linksMap?.[text] ?? void 0
 
@@ -23,20 +23,20 @@ export function makeLinkHandler(options: RemarkMagicLinkOptions | undefined): Ma
         url = link
       } else {
         url = link.link
-        imageUrl = link.imageUrl
+        iconUrl = link.iconUrl
       }
 
       if (!HTTP_PROTOCOL_REGEXP.exec(url))
         return false
 
-      imageUrl ??= `${GET_FAVICON_URL_BASE}${new URL(url).hostname}`
+      iconUrl ??= `${GET_FAVICON_URL_BASE}${new URL(url).hostname}`
 
 
       return {
         text,
         link: url,
         type,
-        imageUrl,
+        iconUrl,
       }
     },
   }
