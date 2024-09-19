@@ -1,0 +1,1 @@
+<a class="remark-magic-link remark-magic-link-link remark-magic-link-with-image" href="https://bar.com" target="_blank"><span class="remark-magic-link-image" role="img" style="background-image: url(&#x27;https://favicon.yandex.net/favicon/test.com&#x27;)"></span><span class="remark-magic-link-text">foo</span></a>

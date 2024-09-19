@@ -1,0 +1,1 @@
+<a class="remark-magic-link remark-magic-link-custom remark-magic-link-with-image" href="https://test.com" target="_blank"><span class="remark-magic-link-image" role="img" style="background-image: url(&#x27;foo&#x27;)"></span><span class="remark-magic-link-text">foo</span></a>
