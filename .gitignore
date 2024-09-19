@@ -1,0 +1,25 @@
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directories
+node_modules/
+
+# Optional eslint cache
+.eslintcache
+
+# dotenv environment variables file
+.env
+
+# build
+dist
+
+# IDE
+.idea/
+/.log*
+/*.log
+
+# VitePress
+docs/.vitepress/dist
+docs/.vitepress/cache
