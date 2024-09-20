@@ -1,13 +1,12 @@
 import { transformerTwoslash } from '@shikijs/vitepress-twoslash'
 import unocss from 'unocss/vite'
-import { defineConfig } from 'vitepress'
+import { defineConfig, postcssIsolateStyles } from 'vitepress'
 import {
   groupIconMdPlugin,
   groupIconVitePlugin,
   localIconLoader,
 } from 'vitepress-plugin-group-icons'
 import { version } from '../../package.json'
-import externalLinkIcon from './plugins/externalLinkIcon'
 
 
 export default defineConfig({
@@ -33,6 +32,16 @@ export default defineConfig({
         '@nolebase/vitepress-plugin-highlight-targeted-heading',
       ],
     },
+    css: {
+      postcss: {
+        plugins: [
+          postcssIsolateStyles({
+            prefix: ':not(:where(.vp-style-raw, .vp-style-raw *, .vp-raw, .vp-raw *))',
+            includeFiles: [/base\.css/, /vp-doc\.css/],
+          }),
+        ],
+      },
+    },
   },
 
   lastUpdated: true,
@@ -50,7 +59,6 @@ export default defineConfig({
       light: 'vitesse-light',
     },
     config: (md) => {
-      md.use(externalLinkIcon)
       md.use(groupIconMdPlugin)
     },
     codeTransformers: [
@@ -60,6 +68,8 @@ export default defineConfig({
   themeConfig: {
     logo: '/logo.svg',
     siteTitle: 'Remark Magic Link',
+    externalLinkIcon: true,
+    outline: 'deep',
 
     editLink: {
       pattern: 'https://github.com/xsjcTony/remark-magic-link/edit/main/docs/src/:path',
@@ -100,7 +110,7 @@ export default defineConfig({
       {
         text: 'API Reference',
         items: [
-          { text: 'Options', link: '/api/options' },
+          { text: 'Overview', link: '/api/' },
         ],
       },
     ],

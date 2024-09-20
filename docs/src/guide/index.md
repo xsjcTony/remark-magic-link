@@ -59,7 +59,7 @@ Paragraph
 and a module `example.js` or `example.ts`:
 
 ::: code-group
-```js [example.js]
+```js twoslash [example.js]
 import { remark } from 'remark'
 import remarkMagicLink from 'remark-magic-link'
 import { read } from 'to-vfile'
@@ -84,11 +84,11 @@ const file = await remark()
 
 console.log(file.toString())
 ```
-```ts [example.ts]
+```ts twoslash [example.ts]
+import type { RemarkMagicLinkOptions } from 'remark-magic-link'
 import { remark } from 'remark'
 import remarkMagicLink from 'remark-magic-link'
 import { read } from 'to-vfile'
-import type { RemarkMagicLinkOptions } from 'remark-magic-link'
 
 const options: RemarkMagicLinkOptions = {
   linksMap: {
@@ -149,7 +149,7 @@ Paragraph
 
 ## Options
 
-The only required option is `linksMap`, which is an object where the keys are the texts to be matched and the values are the links and icons to be used.
+The only required option is [`linksMap`](/api/#linksMap), which is an object where the keys are the texts to be matched and the values are the links and icons to be used.
 
 Refer to [API Reference](/api/) for advanced usages.
 
@@ -158,7 +158,7 @@ Refer to [API Reference](/api/) for advanced usages.
 
 This plugin is written in TypeScript and publishes its types.
 
-Refer to [API Reference](/api/) for detailed types.
+Refer to [Options](/api/#Options) for detailed types.
 
 
 ## Credits

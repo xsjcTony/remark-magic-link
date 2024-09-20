@@ -1,5 +1,11 @@
+/* eslint-disable import/order */
+
 import 'virtual:uno.css'
 
+import TwoslashFloatingVue from '@shikijs/vitepress-twoslash/client'
+import DefaultTheme from 'vitepress/theme'
+import { h } from 'vue'
+import Layout from './Layout.vue'
 import {
   InjectionKey,
   NolebaseEnhancedReadabilitiesMenu,
@@ -8,10 +14,6 @@ import {
 import {
   NolebaseHighlightTargetedHeading,
 } from '@nolebase/vitepress-plugin-highlight-targeted-heading/client'
-import TwoslashFloatingVue from '@shikijs/vitepress-twoslash/client'
-import DefaultTheme from 'vitepress/theme'
-import { h } from 'vue'
-import Layout from './Layout.vue'
 import type { Theme } from 'vitepress'
 
 import '@shikijs/vitepress-twoslash/style.css'

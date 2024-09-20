@@ -1,0 +1,36 @@
+.remark-magic-link {
+  display: inline-flex;
+  align-items: center;
+  border-radius: .25em;
+  background-color: #8882;
+  color: inherit;
+  line-height: 1;
+  text-decoration: none;
+  transition: all;
+  column-gap: 4px;
+  padding-inline: 6px;
+  padding-block: 4px;
+}
+
+.remark-magic-link:focus-within {
+  background-color: #8883;
+}
+
+@media (hover) and (pointer: fine) {
+  .remark-magic-link:hover {
+    background-color: #8883;
+  }
+}
+
+.remark-magic-link.remark-magic-link-with-icon {
+  transform: translateY(2px);
+}
+
+.remark-magic-link > .remark-magic-link-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border-radius: 2px;
+  background-position: center;
+  background-size: cover;
+}
