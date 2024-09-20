@@ -54,7 +54,8 @@
     "test:ci": "pnpm typecheck && pnpm lint && pnpm test:coverage && pnpm build",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "publish-ci": "tsx scripts/publish.ts"
   },
   "dependencies": {
     "@types/mdast": "^4.0.4",
@@ -92,7 +93,6 @@
     "remark-rehype": "^11.1.0",
     "remark-stringify": "^11.0.0",
     "sass": "^1.79.1",
-    "simple-git-hooks": "^2.11.1",
     "to-vfile": "^8.0.0",
     "tsx": "^4.19.1",
     "typescript": "^5.6.2",
