@@ -20,6 +20,7 @@ import '@shikijs/vitepress-twoslash/style.css'
 import '@nolebase/vitepress-plugin-enhanced-readabilities/client/style.css'
 import '@nolebase/vitepress-plugin-highlight-targeted-heading/client/style.css'
 import 'virtual:group-icons.css'
+import 'remark-magic-link/style.css'
 import './style.scss'
 
 
