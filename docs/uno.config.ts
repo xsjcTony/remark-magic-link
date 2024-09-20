@@ -5,10 +5,10 @@ import {
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
-import type { Theme } from '@unocss/preset-mini'
+import type { PresetUnoTheme } from 'unocss'
 
 
-export default defineConfig<Theme>({
+export default defineConfig<PresetUnoTheme>({
   presets: [
     presetUno(),
     presetIcons(),
