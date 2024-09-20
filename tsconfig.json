@@ -21,7 +21,7 @@
   "include": [
     "src",
     "test",
-    "docs",
+    "docs/uno.config.ts",
     "docs/.vitepress/**/*.ts",
     "docs/.vitepress/**/*.vue"
   ],

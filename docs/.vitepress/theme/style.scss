@@ -20,6 +20,10 @@
   --vp-nav-logo-height: 36px;
 }
 
+.VPSocialLinks.VPNavBarSocialLinks.social-links {
+  @apply mie-0;
+}
+
 
 /**
  * Component: Home

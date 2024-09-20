@@ -49,12 +49,12 @@ describe('[main]', () => {
   })
 
 
-  it(`[${TEST_TITLE.CUSTOM_ICON}}]: use custom icon if "iconUrl" is specified`, async () => {
+  it(`[${TEST_TITLE.CUSTOM_ICON}}]: use custom icon if "icon" is specified`, async () => {
     const result = await processInput(INPUT, {
       linksMap: {
-        Vitest: { link: 'https://github.com/vitest-dev/vitest', iconUrl: 'foo' },
+        Vitest: { link: 'https://github.com/vitest-dev/vitest', icon: 'foo' },
         VueUse: 'https://github.com/vueuse/vueuse',
-        Vue: { link: 'https://github.com/vuejs/core', iconUrl: 'https://vuejs.org/logo.svg' },
+        Vue: { link: 'https://github.com/vuejs/core', icon: 'https://vuejs.org/logo.svg' },
       },
     })
 
@@ -62,11 +62,11 @@ describe('[main]', () => {
   })
 
 
-  it(`[${TEST_TITLE.NO_ICON}]: do not render icon if "iconUrl" is "false"`, async () => {
+  it(`[${TEST_TITLE.NO_ICON}]: do not render icon if "icon" is "false"`, async () => {
     const result = await processInput(INPUT, {
       linksMap: {
         Vitest: 'https://github.com/vitest-dev/vitest',
-        Vue: { link: 'https://github.com/vuejs/core', iconUrl: false },
+        Vue: { link: 'https://github.com/vuejs/core', icon: false },
       },
     })
 

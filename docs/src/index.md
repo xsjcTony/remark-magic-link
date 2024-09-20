@@ -5,17 +5,20 @@ titleTemplate: false
 hero:
   name: Remark Magic Link
   text: Makes your `{link}` beautiful with image
-  tagline: Customizable · Powerful · Flexible · Unstyled
+  tagline: Customizable · Accessible · Powerful · Unstyled
   image:
     src: /logo.svg
     alt: remark magic link
   actions:
     - theme: brand
-      text: Get Started
+      text: Getting Started
       link: /guide/
     - theme: alt
       text: API Reference
       link: /api/
+    - theme: alt
+      text: View on GitHub ↗
+      link: https://github.com/xsjcTony/remark-magic-link
 
 features:
   - title: Fade in / out

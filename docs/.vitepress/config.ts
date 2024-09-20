@@ -1,5 +1,11 @@
+import { transformerTwoslash } from '@shikijs/vitepress-twoslash'
 import unocss from 'unocss/vite'
 import { defineConfig } from 'vitepress'
+import {
+  groupIconMdPlugin,
+  groupIconVitePlugin,
+  localIconLoader,
+} from 'vitepress-plugin-group-icons'
 import { version } from '../../package.json'
 import externalLinkIcon from './plugins/externalLinkIcon'
 
@@ -10,7 +16,23 @@ export default defineConfig({
   vite: {
     plugins: [
       unocss(),
+      groupIconVitePlugin({
+        customIcon: {
+          'esm.sh': localIconLoader(import.meta.url, './assets/icons/esm.sh.svg'),
+        },
+      }),
     ],
+    optimizeDeps: {
+      exclude: [
+        '@nolebase/vitepress-plugin-enhanced-readabilities/client',
+      ],
+    },
+    ssr: {
+      noExternal: [
+        '@nolebase/vitepress-plugin-enhanced-readabilities',
+        '@nolebase/vitepress-plugin-highlight-targeted-heading',
+      ],
+    },
   },
 
   lastUpdated: true,
@@ -29,14 +51,18 @@ export default defineConfig({
     },
     config: (md) => {
       md.use(externalLinkIcon)
+      md.use(groupIconMdPlugin)
     },
+    codeTransformers: [
+      transformerTwoslash(),
+    ],
   },
   themeConfig: {
     logo: '/logo.svg',
     siteTitle: 'Remark Magic Link',
 
     editLink: {
-      pattern: 'https://github.com/xsjcTony/unocss-preset-animations/edit/main/docs/src/:path',
+      pattern: 'https://github.com/xsjcTony/remark-magic-link/edit/main/docs/src/:path',
       text: 'Suggest changes to this page',
     },
 
@@ -49,18 +75,17 @@ export default defineConfig({
 
     footer: {
       message: 'Released under the MIT License.',
-      copyright: 'Copyright © 2023-present Aelita (Tony Jiang)',
+      copyright: 'Copyright © 2024-present Aelita (Tony Jiang)',
     },
 
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Guide', link: '/guide/', activeMatch: '^/guide/' },
-      { text: 'Animations', link: '/animations/', activeMatch: '^/animations/' },
-      { text: 'Playground', link: 'https://unocss.dev/play/?html=DwEwlgbgBAxgNgQwM5ILwCIAWBaJMBOApoQHZQDm%2BYIUADojIdmAC6EC2S2jJb%2B6APgBQUKKEixEKDAhJh2CNszJI41JmBLYW2AGYBXOHCi6EIDVoAMUWfMVMQ%2B-IrAB7LQEZL3m3IVLzRABPbABWHzYADx0ADki4QRFRKAAZV1cAaxsWKHZCJOAAenAIYSKS4SA&config=JYWwDg9gTgLgBAbwFBzgEwKYDNgDsMDCEuOA5gDQpxhQYDOGMAgjDFMAEYCuMwWAnpVQ16jAJIBjYnSHVaDGAFVcESgF84WKBBBwA5FxUS6dPUlCRYiOaOa5QAQ17S4GrTv2GIxugFoRCr4O9iBOwNJmSEgYAB6W8JhYDlwANgnYeITEZAAUyMLyjHQAXHAA2lQFtsoQOQCUslUKTCFh0nmawCkpALIQmKV6HBAwABZ6rg1UALrqdUhAA&css=PQKgBA6gTglgLgUzAYwK4Gc4HsC2YDCAyoWABYJQIA0YAhgHYAmYcUD6AZllDhWOqgAOg7nAB0YAGLcwCAB60cggDYIAXGBDAAUKDBi0mXGADe2sGC704AWgDuCGAHNScDQFYADJ4Dc5sAACtMLKAJ5gggCMLPK2ABR2pPBIcsoAlH4WAEa0yADWTlBYqEw2yFjK3Bpw5LxxAOTllVDoYpSMYgAs3vUZ2gC%2BmsBAA&options=N4IgLgTghgdgzgMwPYQLYAkyoDYgFwJTZwCmAvkA' },
+      { text: 'API reference', link: '/api/', activeMatch: '^/api/' },
       {
         text: `v${version}`,
         items: [
-          { text: 'Release Notes', link: 'https://github.com/xsjcTony/unocss-preset-animations/releases' },
+          { text: 'Release Notes', link: 'https://github.com/xsjcTony/remark-magic-link/releases' },
         ],
       },
     ],
@@ -70,26 +95,18 @@ export default defineConfig({
         text: 'Guide',
         items: [
           { text: 'Getting Started', link: '/guide/' },
-          { text: 'Comparisons', link: '/guide/comparisons' },
-          { text: 'Migration Guide', link: '/guide/migration' },
         ],
       },
       {
-        text: 'Animations',
+        text: 'API Reference',
         items: [
-          { text: 'Base', link: '/animations/' },
-          { text: 'Fade', link: '/animations/fade' },
-          { text: 'Zoom', link: '/animations/zoom' },
-          { text: 'Spin', link: '/animations/spin' },
-          { text: 'Slide', link: '/animations/slide' },
-          { text: 'Animation Properties', link: '/animations/animation-properties' },
+          { text: 'Options', link: '/api/options' },
         ],
       },
-      { text: 'Interactive Documentation', link: '/interactive-documentation' },
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/xsjcTony/unocss-preset-animations' },
+      { icon: 'github', link: 'https://github.com/xsjcTony/remark-magic-link' },
     ],
   },
 })

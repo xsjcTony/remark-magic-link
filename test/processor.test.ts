@@ -19,17 +19,17 @@ const INPUT = await readFile(new URL('fixtures/input-postprocessor.md', import.m
 describe('[processor]', () => {
   describe('[default]', () => {
     describe('[github-org-icon]', () => {
-      it('should return "iconUrl: false" if "iconUrl" is false', () => {
+      it('should return "icon: false" if "icon" is false', () => {
         const parsed = {
           text: 'foo',
           link: 'https://test.com',
           type: 'link',
-          iconUrl: false,
+          icon: false,
         } as const
 
         gitHubOrgIconPostprocessor.postprocess(parsed)
 
-        expect(parsed).toStrictEqual(expect.objectContaining({ iconUrl: false }))
+        expect(parsed).toStrictEqual(expect.objectContaining({ icon: false }))
       })
 
 
@@ -38,7 +38,7 @@ describe('[processor]', () => {
           text: 'foo',
           link: 'https://test.com',
           type: 'link',
-          iconUrl: `${GET_FAVICON_URL_BASE}github.com`,
+          icon: `${GET_FAVICON_URL_BASE}github.com`,
         } as const
 
         gitHubOrgIconPostprocessor.postprocess(parsed)
@@ -47,7 +47,7 @@ describe('[processor]', () => {
           text: 'foo',
           link: 'https://test.com',
           type: 'link',
-          iconUrl: `${GET_FAVICON_URL_BASE}github.com`,
+          icon: `${GET_FAVICON_URL_BASE}github.com`,
         })
       })
 
@@ -57,7 +57,7 @@ describe('[processor]', () => {
           text: 'foo',
           link: 'https://github.com/sponsors',
           type: 'link',
-          iconUrl: `${GET_FAVICON_URL_BASE}github.com`,
+          icon: `${GET_FAVICON_URL_BASE}github.com`,
         } as const
 
         gitHubOrgIconPostprocessor.postprocess(parsed)
@@ -66,17 +66,17 @@ describe('[processor]', () => {
           text: 'foo',
           link: 'https://github.com/sponsors',
           type: 'link',
-          iconUrl: `${GET_FAVICON_URL_BASE}github.com`,
+          icon: `${GET_FAVICON_URL_BASE}github.com`,
         })
       })
 
 
-      it('should return as is if "iconUrl" is not a favicon', () => {
+      it('should return as is if "icon" is not a favicon', () => {
         const parsed = {
           text: 'foo',
           link: 'https://github.com/vitest-dev/vitest',
           type: 'link',
-          iconUrl: 'https://example.com/foo.png',
+          icon: 'https://example.com/foo.png',
         } as const
 
         gitHubOrgIconPostprocessor.postprocess(parsed)
@@ -85,7 +85,7 @@ describe('[processor]', () => {
           text: 'foo',
           link: 'https://github.com/vitest-dev/vitest',
           type: 'link',
-          iconUrl: 'https://example.com/foo.png',
+          icon: 'https://example.com/foo.png',
         })
       })
 
@@ -95,7 +95,7 @@ describe('[processor]', () => {
           text: 'foo',
           link: 'https://github.com/vitest-dev/vitest',
           type: 'link',
-          iconUrl: `${GET_FAVICON_URL_BASE}github.com/vitest-dev/vitest`,
+          icon: `${GET_FAVICON_URL_BASE}github.com/vitest-dev/vitest`,
         } as const
 
         gitHubOrgIconPostprocessor.postprocess(parsed)
@@ -104,7 +104,7 @@ describe('[processor]', () => {
           text: 'foo',
           link: 'https://github.com/vitest-dev/vitest',
           type: 'link',
-          iconUrl: 'https://github.com/vitest-dev.png',
+          icon: 'https://github.com/vitest-dev.png',
         })
       })
     })
@@ -123,7 +123,7 @@ describe('[processor]', () => {
           parsed.text = 'foo'
           parsed.link = 'https://test.com'
           parsed.type = 'custom'
-          parsed.iconUrl = 'foo'
+          parsed.icon = 'foo'
         },
       }
 

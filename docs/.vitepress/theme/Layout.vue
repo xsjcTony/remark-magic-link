@@ -28,7 +28,11 @@ provide('toggle-appearance', async () => {
 
 
 <template>
-  <DefaultTheme.Layout />
+  <DefaultTheme.Layout>
+    <template v-for="(_, name) in $slots" #[name]>
+      <slot :name="name" />
+    </template>
+  </DefaultTheme.Layout>
 </template>
 
 

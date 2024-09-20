@@ -22,5 +22,6 @@ export default defineConfig(
         },
       },
     },
+    unocss: false,
   },
 )

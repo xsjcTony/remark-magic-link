@@ -8,109 +8,159 @@ outline: [2, 3]
 
 ## Overview
 
-This is a preset of [UnoCSS](https://unocss.dev/) for creating beautiful animations with simple classnames.
+This is a [unified](https://unifiedjs.com/) ([remark](https://remark.js.org/)) plugin to turn `{text}` syntax into links, optionally with an icon.
 
-It adapts the [tailwindcss-animate](https://github.com/jamiebuilds/tailwindcss-animate) TailwindCSS plugin to be compatible with UnoCSS but more flexible and user-friendly.
+
+## When should I use this?
+This plugin is useful when you have a set of links that you want to quickly adopt them by a simple `{text}` syntax instead of writing `[text](url)` everytime in markdown, with a consistent styling and optionally with an icon.
+
+It gives back a well-structured accessible HTML output, which can be styled by classname or used by JavaScript, for example to add some tooltips or other interactive features. 
 
 
 ## Installation
 
+This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c).
+
+It requires Node.js v16+.
+
 ::: code-group
 ```bash [npm]
-npm install -D unocss-preset-animations
+npm install remark-magic-link
 ```
 ```bash [yarn]
-yarn add -D unocss-preset-animations
+yarn add remark-magic-link
 ```
 ```bash [pnpm]
-pnpm add -D unocss-preset-animations
+pnpm add remark-magic-link
 ```
 ```bash [bun]
-bun add -D unocss-preset-animations
+bun add remark-magic-link
 ```
-:::
-
-::: danger
-This preset requires `unocss` version of **v0.56.0+**
-:::
-
-::: warning
-This preset is based on `@unocss/preset-wind` or `@unocss/preset-uno`, please make sure they are included in the `presets`, otherwise it won't work as expected.
+```ts [esm.sh]
+import remarkMagicLink from 'https://esm.sh/remark-magic-link'
+```
 :::
 
 
 ## Usage
 
-In your UnoCSS config, add this preset to the `presets` option:
+Say we have the following markdown file `example.md`:
 
-```ts
-import { defineConfig, presetUno } from 'unocss' // v0.56.0 and above required
-import { presetAnimations } from 'unocss-preset-animations' // [!code ++]
-import type { Theme } from '@unocss/preset-uno'
+```markdown
+# Title
 
-export default defineConfig<Theme>({
-  presets: [
-    presetUno(), // This must be defined before this preset
-    presetAnimations() // [!code ++]
-  ]
-})
+{Vitest} dummy {Vue}
+
+{Unified}
+
+Paragraph
 ```
 
-::: warning
-Note that either `presetUno` or `presetWind` must be defined **before** this preset.
+and a module `example.js` or `example.ts`:
+
+::: code-group
+```js [example.js]
+import { remark } from 'remark'
+import remarkMagicLink from 'remark-magic-link'
+import { read } from 'to-vfile'
+
+const options = {
+  linksMap: {
+    Vitest: 'https://github.com/vitest-dev/vitest',
+    Vue: {
+      link: 'https://github.com/vuejs/core',
+      icon: 'https://vuejs.org/logo.svg',
+    },
+    Unified: {
+      link: 'https://github.com/unifiedjs/unified',
+      icon: false,
+    }
+  }
+}
+
+const file = await remark()
+  .use(remarkMagicLink, options)
+  .process(await read(new URL('example.md', import.meta.url)))
+
+console.log(file.toString())
+```
+```ts [example.ts]
+import { remark } from 'remark'
+import remarkMagicLink from 'remark-magic-link'
+import { read } from 'to-vfile'
+import type { RemarkMagicLinkOptions } from 'remark-magic-link'
+
+const options: RemarkMagicLinkOptions = {
+  linksMap: {
+    Vitest: 'https://github.com/vitest-dev/vitest',
+    Vue: {
+      link: 'https://github.com/vuejs/core',
+      icon: 'https://vuejs.org/logo.svg',
+    },
+    Unified: {
+      link: 'https://github.com/unifiedjs/unified',
+      icon: false,
+    }
+  }
+}
+
+const file = await remark()
+  .use(remarkMagicLink, options)
+  .process(await read(new URL('example.md', import.meta.url)))
+
+console.log(file.toString())
+```
+:::
+
+Running `node example.js` or `tsx example.ts` yields:
+
+::: code-group
+```markdown [formatted & decoded]
+# Title
+
+<a class="remark-magic-link remark-magic-link-link remark-magic-link-with-icon" href="https://github.com/vitest-dev/vitest" target="_blank">
+  <span class="remark-magic-link-icon" role="img" style="background-image: url('https://github.com/vitest-dev.png')"></span>
+  <span class="remark-magic-link-text">Vitest</span>
+</a>
+dummy
+<a class="remark-magic-link remark-magic-link-link remark-magic-link-with-icon" href="https://github.com/vuejs/core" target="_blank">
+  <span class="remark-magic-link-icon" role="img" style="background-image: url('https://vuejs.org/logo.svg')"></span>
+  <span class="remark-magic-link-text">Vue</span>
+</a>
+
+<a class="remark-magic-link remark-magic-link-link" href="https://github.com/unifiedjs/unified" target="_blank">
+  <span class="remark-magic-link-text">Unified</span>
+</a>
+
+Paragraph
+
+```
+```markdown [original]
+# Title
+
+<a class="remark-magic-link remark-magic-link-link remark-magic-link-with-icon" href="https://github.com/vitest-dev/vitest" target="_blank"><span class="remark-magic-link-icon" role="img" style="background-image: url(&#x27;https://github.com/vitest-dev.png&#x27;)"></span><span class="remark-magic-link-text">Vitest</span></a> dummy <a class="remark-magic-link remark-magic-link-link remark-magic-link-with-icon" href="https://github.com/vuejs/core" target="_blank"><span class="remark-magic-link-icon" role="img" style="background-image: url(&#x27;https://vuejs.org/logo.svg&#x27;)"></span><span class="remark-magic-link-text">Vue</span></a>
+
+<a class="remark-magic-link remark-magic-link-link" href="https://github.com/unifiedjs/unified" target="_blank"><span class="remark-magic-link-text">Unified</span></a>
+
+Paragraph
+```
 :::
 
 
 ## Options
 
-All properties are optional.
+The only required option is `linksMap`, which is an object where the keys are the texts to be matched and the values are the links and icons to be used.
 
-### unit
+Refer to [API Reference](/api/) for advanced usages.
 
-- Type: `'ms' | 's'`
-- Default: `'ms'`
 
-The unit of time options (duration and delay).
+## TypeScript
 
-### delay
+This plugin is written in TypeScript and publishes its types.
 
-- Type: `number`
+Refer to [API Reference](/api/) for detailed types.
 
-Default delay time for animations.
 
-### direction
+## Credits
 
-- Type: `'normal' | 'reverse' | 'alternate' | 'alternate-reverse'`
-
-Default direction of animations.
-
-### duration
-
-- Type: `number`
-- Default: `theme.duration.DEFAULT` (`150ms` if unchanged)
-
-Default duration time for animations.
-
-### fillMode
-
-- Type: `'none' | 'forwards' | 'backwards' | 'both'`
-
-Default fill mode for animations. `both` is generally useful.
-
-### iterationCount
-
-- Type: `number | 'infinite'`
-
-Default iteration count for animations.
-
-### playState
-
-- Type: `'running' | 'paused'`
-
-Default play state for animations.
-
-### timingFunction
-
-- Type: `'linear' | 'ease' | 'ease-in' | 'ease-out' | 'ease-in-out' | string`
-
-Default timing function for animations.
+Inspired by [markdown-it-magic-link](https://github.com/antfu/markdown-it-magic-link).
