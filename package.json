@@ -1,8 +1,8 @@
 {
   "name": "remark-magic-link",
-  "version": "1.0.0-beta.7",
+  "version": "1.0.0-beta.8",
   "description": "🔌 A remark plugin to turn {text} syntax into links, optionally with an icon",
-  "packageManager": "pnpm@9.10.0",
+  "packageManager": "pnpm@9.11.0",
   "type": "module",
   "author": "Aelita <https://github.com/xsjcTony>",
   "license": "MIT",
@@ -31,7 +31,7 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs"
     },
-    "./style.css": "./dist/style.css"
+    "./style.css": "./style.css"
   },
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -92,9 +92,9 @@
     "remark": "^15.0.1",
     "remark-magic-link": "1.0.0-beta.6",
     "remark-parse": "^11.0.0",
-    "remark-rehype": "^11.1.0",
+    "remark-rehype": "^11.1.1",
     "remark-stringify": "^11.0.0",
-    "sass": "^1.79.1",
+    "sass": "^1.79.2",
     "simple-git-hooks": "^2.11.1",
     "to-vfile": "^8.0.0",
     "tsx": "^4.19.1",
