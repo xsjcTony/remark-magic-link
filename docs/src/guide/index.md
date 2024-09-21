@@ -147,6 +147,28 @@ Paragraph
 :::
 
 
+## Styling
+
+It's unstyled by default, but a default `style.css` is provided.
+
+```ts
+import 'remark-magic-link/style.css';
+```
+
+It will transform `{Vitest}` into: <span class="vp-style-raw"><a class="remark-magic-link remark-magic-link-link remark-magic-link-with-icon" href="https://github.com/vitest-dev/vitest" target="_blank">
+<span class="remark-magic-link-icon" role="img" style="background-image: url('https://github.com/vitest-dev.png')"></span>
+<span class="remark-magic-link-text">Vitest</span>
+</a></span> 
+
+If you want to customize it yourself, the plugin generates a well-structured HTML output which can be styled via classnames.
+
+| Element         | Classnames                                                                      |
+|-----------------|---------------------------------------------------------------------------------|
+| `<a>` (root)    | `remark-magic-link` \| `remark-magic-link-with-icon` (if `icon` is not `false`) |
+| `<span>` (icon) | `remark-magic-link-icon`                                                        |
+| `<span>` (text) | `remark-magic-link-text`                                                        |
+
+
 ## Options
 
 The only required option is [`linksMap`](/api/#linksMap), which is an object where the keys are the texts to be matched and the values are the links and icons to be used.

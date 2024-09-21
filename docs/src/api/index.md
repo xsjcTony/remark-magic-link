@@ -23,7 +23,7 @@ An object of key-value pairs where the keys are the texts to be matched and the 
 For example, with option:
 
 ```ts twoslash
-import type { RemarkMagicLinkOptions } from 'remark-magic-link';
+import type { RemarkMagicLinkOptions } from 'remark-magic-link'
 
 const options: RemarkMagicLinkOptions = {
   linksMap: {
@@ -40,11 +40,6 @@ It will render:
   <span class="remark-magic-link-text">Vitest</span>
 </a>
 ```
-
-The result with bundled CSS will be: <span class="vp-style-raw"><a class="remark-magic-link remark-magic-link-link remark-magic-link-with-icon" href="https://github.com/vitest-dev/vitest" target="_blank">
-<span class="remark-magic-link-icon" role="img" style="background-image: url('https://github.com/vitest-dev.png')"></span>
-<span class="remark-magic-link-text">Vitest</span>
-</a></span>
 
 ::: tip
 By default, if you don't specify any link for `icon`, it will automatically use the favicon of the link via yandex API.

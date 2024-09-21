@@ -7,6 +7,7 @@
   line-height: 1;
   text-decoration: none;
   transition: all;
+  transform: translateY(1px);
   column-gap: 4px;
   padding-inline: 6px;
   padding-block: 4px;
@@ -23,7 +24,7 @@
 }
 
 .remark-magic-link.remark-magic-link-with-icon {
-  transform: translateY(2px);
+  transform: translateY(3px);
 }
 
 .remark-magic-link > .remark-magic-link-icon {
