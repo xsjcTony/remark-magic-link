@@ -1,8 +1,15 @@
+/**
+ * Colors
+ * -------------------------------------------------------------------------- */
 :root {
   --vp-c-brand-1: #ff7189;
   --vp-c-brand-2: #ff879a;
   --vp-c-brand-3: #ff9eac;
   --vp-c-brand-soft: rgb(255 158 172 / 0.14);
+  --scrollbar-track-bg: transparent;
+  --scrollbar-thumb-bg: #c0c0c0;
+  --scrollbar-thumb-bg-hover: #a7a7a7;
+
 }
 
 :root.dark {
@@ -10,6 +17,32 @@
   --vp-c-brand-2: #ff9eac;
   --vp-c-brand-3: #ff879a;
   --vp-c-brand-soft: rgb(255 158 172 / 0.14);
+  --scrollbar-track-bg: transparent;
+  --scrollbar-thumb-bg: #686868;
+  --scrollbar-thumb-bg-hover: #7a7a7a;
+}
+
+
+/**
+ * Scrollbar
+ * -------------------------------------------------------------------------- */
+@media (pointer: fine) {
+  ::-webkit-scrollbar {
+    @apply size-7;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full;
+    background-color: var(--scrollbar-thumb-bg);
+
+    &:hover {
+      background-color: var(--scrollbar-thumb-bg-hover);
+    }
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: var(--scrollbar-track-bg);
+  }
 }
 
 

@@ -8,7 +8,7 @@ export function parseMagicLink(
   handlers: MagicLinkHandler[],
 ): ParsedMagicLink | false {
   for (const handler of handlers) {
-    const parsed = handler.handler(content)
+    const parsed = handler.handle(content)
 
     if (parsed)
       return parsed

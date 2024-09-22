@@ -11,7 +11,7 @@ outline: [2, 3]
 This is a [unified](https://unifiedjs.com/) ([remark](https://remark.js.org/)) plugin to turn `{text}` syntax into links, optionally with an icon.
 
 
-## When should I use this?
+## When Should I Use This?
 This plugin is useful when you have a set of links that you want to quickly adopt them by a simple `{text}` syntax instead of writing `[text](url)` everytime in markdown, with a consistent styling and optionally with an icon.
 
 It gives back a well-structured accessible HTML output, which can be styled by classname or used by JavaScript, for example to add some tooltips or other interactive features. 
@@ -171,7 +171,7 @@ If you want to customize it yourself, the plugin generates a well-structured HTM
 
 ## Options
 
-The only required option is [`linksMap`](/api/#linksMap), which is an object where the keys are the texts to be matched and the values are the links and icons to be used.
+The only required option is [`linksMap`](/api/#linksMap) if you are using the default [handlers](/api/handler), which is an object where the keys are the texts to be matched and the values are the links and icons to be used.
 
 Refer to [API Reference](/api/) for advanced usages.
 
@@ -180,7 +180,7 @@ Refer to [API Reference](/api/) for advanced usages.
 
 This plugin is written in TypeScript and publishes its types.
 
-Refer to [Options](/api/#Options) for detailed types.
+Refer to [Options](/api/#Options) or `index.d.ts` for detailed types.
 
 
 ## Credits

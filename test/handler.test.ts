@@ -19,28 +19,28 @@ const INPUT = await readFile(new URL('fixtures/input-handler.md', import.meta.ur
 describe('[handler]', () => {
   describe('[default]', () => {
     it('should return "false" if no link is provided', () => {
-      expect(makeLinkHandler(void 0).handler('')).toBe(false)
+      expect(makeLinkHandler(void 0).handle('')).toBe(false)
     })
 
 
     it('should return "false" if the link is not in the linksMap', () => {
       const options: RemarkMagicLinkOptions = { linksMap: { foo: 'https://test.com' } }
 
-      expect(makeLinkHandler(options).handler('bar')).toBe(false)
+      expect(makeLinkHandler(options).handle('bar')).toBe(false)
     })
 
 
     it('should return "false" if the link is not valid including protocol', () => {
       const options: RemarkMagicLinkOptions = { linksMap: { foo: 'test.com' } }
 
-      expect(makeLinkHandler(options).handler('foo')).toBe(false)
+      expect(makeLinkHandler(options).handle('foo')).toBe(false)
     })
 
 
     it('should use the string as "link" and fetch the favicon for "icon"', () => {
       const options: RemarkMagicLinkOptions = { linksMap: { foo: 'https://test.com' } }
 
-      expect(makeLinkHandler(options).handler('foo')).toStrictEqual({
+      expect(makeLinkHandler(options).handle('foo')).toStrictEqual({
         text: 'foo',
         link: 'https://test.com',
         type: 'link',
@@ -57,7 +57,7 @@ describe('[handler]', () => {
           },
         }
 
-        expect(makeLinkHandler(options).handler('foo')).toStrictEqual({
+        expect(makeLinkHandler(options).handle('foo')).toStrictEqual({
           text: 'foo',
           link: 'https://test.com',
           type: 'link',
@@ -73,7 +73,7 @@ describe('[handler]', () => {
           },
         }
 
-        expect(makeLinkHandler(options).handler('foo')).toStrictEqual({
+        expect(makeLinkHandler(options).handle('foo')).toStrictEqual({
           text: 'foo',
           link: 'https://test.com',
           type: 'link',
@@ -90,7 +90,7 @@ describe('[handler]', () => {
 
       const handler: MagicLinkHandler = {
         name: 'custom',
-        handler: (content) => {
+        handle: (content) => {
           spyFn('custom')
 
           return {
@@ -103,7 +103,6 @@ describe('[handler]', () => {
       }
 
       const result = await processInput(INPUT, {
-        linksMap: { foo: 'https://test.com' },
         handlers: [handler],
       })
 
@@ -118,7 +117,7 @@ describe('[handler]', () => {
 
       const handlerFalsy: MagicLinkHandler = {
         name: 'falsy',
-        handler: () => {
+        handle: () => {
           spyFn('1-falsy')
           return false
         },
@@ -126,7 +125,7 @@ describe('[handler]', () => {
 
       const handlerTruthy: MagicLinkHandler = {
         name: 'truthy',
-        handler: (content) => {
+        handle: (content) => {
           spyFn('2-truthy')
 
           return {
@@ -140,7 +139,7 @@ describe('[handler]', () => {
 
       const handlerUseless: MagicLinkHandler = {
         name: 'truthy-but-useless',
-        handler: content => ({
+        handle: content => ({
           text: content,
           link: 'https://useless.com',
           type: 'useless',
@@ -149,7 +148,6 @@ describe('[handler]', () => {
       }
 
       const result = await processInput(INPUT, {
-        linksMap: { foo: 'https://test.com' },
         handlers: [handlerFalsy, handlerTruthy, handlerUseless],
       })
 

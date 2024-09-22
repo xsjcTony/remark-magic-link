@@ -14,11 +14,15 @@ interface RemarkMagicLinkOptions {
 }
 ```
 
-### linksMap <Badge text="required" type="danger" />
+### linksMap
 
 - Type: `Record<string, string | { link: string; icon?: string | false }>`
 
 An object of key-value pairs where the keys are the texts to be matched and the values are the links and icons to be used.
+
+::: warning
+This is required if you are using the default [handlers](/api/handler), otherwise nothing will be done.
+:::
 
 For example, with option:
 
@@ -42,7 +46,7 @@ It will render:
 ```
 
 ::: tip
-By default, if you don't specify any link for `icon`, it will automatically use the favicon of the link via yandex API.
+By default, if you don't specify any link for `icon`, it will automatically use the favicon of the link via `yandex API`.
 
 If it's a GitHub repo, the organization's avatar will be used. Just like in the above example, `https://github.com/vitest-dev.png` is used as icon URL.
 :::

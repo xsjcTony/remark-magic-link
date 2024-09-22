@@ -7,7 +7,7 @@ export function makeLinkHandler(options: RemarkMagicLinkOptions | undefined): Ma
 
   return {
     name: 'link',
-    handler(content: string) {
+    handle(content: string) {
       const type = 'link'
       const text = content.trim()
 

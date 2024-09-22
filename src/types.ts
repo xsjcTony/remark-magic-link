@@ -8,7 +8,7 @@ export interface ParsedMagicLink {
 
 export interface MagicLinkHandler {
   name: string
-  handler: (content: string) => ParsedMagicLink | false | undefined
+  handle: (content: string) => ParsedMagicLink | false
 }
 
 export interface MagicLinkPostprocessor {
@@ -18,7 +18,7 @@ export interface MagicLinkPostprocessor {
 
 
 export interface RemarkMagicLinkOptions {
-  linksMap: Record<string, string | { link: string; icon?: string | false }>
+  linksMap?: Record<string, string | { link: string; icon?: string | false }>
   handlers?: MagicLinkHandler[]
   postprocessors?: MagicLinkPostprocessor[]
   openInNewTab?: boolean

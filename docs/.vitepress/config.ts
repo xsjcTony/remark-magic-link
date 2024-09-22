@@ -109,8 +109,11 @@ export default defineConfig({
       },
       {
         text: 'API Reference',
+        base: '/api',
         items: [
-          { text: 'Overview', link: '/api/' },
+          { text: 'Overview', link: '/' },
+          { text: 'Handler', link: '/handler' },
+          { text: 'Postprocessor', link: '/postprocessor' },
         ],
       },
     ],
