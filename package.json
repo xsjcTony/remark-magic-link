@@ -1,6 +1,6 @@
 {
   "name": "remark-magic-link",
-  "version": "1.0.0-beta.13",
+  "version": "1.0.0-beta.14",
   "description": "🔌 A remark plugin to turn {text} syntax into links, optionally with an icon",
   "packageManager": "pnpm@9.11.0",
   "type": "module",
