@@ -62,6 +62,7 @@ export default defineConfig({
       md.use(groupIconMdPlugin)
     },
     codeTransformers: [
+      // @ts-expect-error - `shiki` version mismatch, but it works
       transformerTwoslash(),
     ],
   },
