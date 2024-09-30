@@ -22,7 +22,7 @@ hero:
 
 features:
   - title: Easy To Use
-    icon: 🌟
+    icon: ✨
     details: Simple integration with Remark and MDX, works out of the box
   - title: Customizable
     icon: 🛠️
