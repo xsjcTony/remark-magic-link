@@ -21,11 +21,5 @@ export default defineConfig<PresetUnoTheme>({
     transformerVariantGroup(),
     transformerDirectives(),
   ],
-  theme: {
-    colors: {
-      primary: {
-        DEFAULT: 'var(--vp-c-brand-1)',
-      },
-    },
-  },
+  blocklist: ['outline'],
 })

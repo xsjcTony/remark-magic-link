@@ -36,6 +36,10 @@ export default {
     app.provide(InjectionKey, {
       layoutSwitch: {
         disableAnimation: true,
+        defaultMode: 3,
+      },
+      spotlight: {
+        defaultToggle: false,
       },
     })
   },
