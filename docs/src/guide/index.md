@@ -171,7 +171,7 @@ If you want to customize it yourself, the plugin generates a well-structured HTM
 
 ## Options
 
-The only required option is [`linksMap`](/api/#linksMap) if you are using the default [handlers](/api/handler), which is an object where the keys are the texts to be matched and the values are the links and icons to be used.
+The only required option is [`linksMap`](/api/#linksMap) if you are using the default [handlers](/api/handler), which is an object where keys are the texts to be matched and values are the links and icons to be used.
 
 Refer to [API Reference](/api/) for advanced usages.
 
