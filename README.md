@@ -7,7 +7,7 @@
 <h1 align="center">remark-magic-link</h1>
 
 <p align="center">
-🔌 A remark plugin to turn `{text}` syntax into links, optionally with an icon
+🔌 A remark plugin to turn <code>{text}</code> syntax into links, optionally with an icon
 </p>
 
 <p align="center">
