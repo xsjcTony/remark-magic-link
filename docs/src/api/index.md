@@ -18,7 +18,7 @@ interface RemarkMagicLinkOptions {
 
 - Type: `Record<string, string | { link: string; icon?: string | false }>`
 
-An object of key-value pairs where the keys are the texts to be matched and the values are the links and icons to be used.
+An object of key-value pairs where keys are the texts to be matched and values are the links and icons to be used.
 
 ::: warning
 This is required if you are using the default [handlers](/api/handler), otherwise nothing will be done.
