@@ -14,7 +14,9 @@ export default defineConfig({
 
   vite: {
     plugins: [
+      // @ts-expect-error - VitePress doesn't support Vite v6 yet.
       unocss(),
+      // @ts-expect-error - VitePress doesn't support Vite v6 yet.
       groupIconVitePlugin({
         customIcon: {
           'esm.sh': localIconLoader(import.meta.url, './assets/icons/esm.sh.svg'),
@@ -62,7 +64,6 @@ export default defineConfig({
       md.use(groupIconMdPlugin)
     },
     codeTransformers: [
-      // @ts-expect-error - `shiki` version mismatch, but it works
       transformerTwoslash(),
     ],
   },
